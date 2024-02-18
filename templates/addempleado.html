@@ -1,0 +1,62 @@
+{% extends 'base.html'%}
+
+{% block title %} 
+Agregar empleado
+{% endblock %}
+
+{% block body %}
+
+<div class="container mt-5">
+    <h1>Agregar empleado</h1>
+
+    <form method="post">
+      <div class="form-group my-3">
+        <label>Nombre</label>
+        <input name="nombre" type="text" class="form-control" placeholder="Nombre de empleado">
+      </div>
+      <div class="form-group my-3">
+        <label>Documento</label>
+        <input name="documento" type="text" class="form-control" placeholder="Número de documento">
+      </div>
+      <div class="form-group my-3">
+        <label>Cuenta bancaria</label>
+        <input name="cuenta" type="text" class="form-control" placeholder="Número de cuenta bancaria">
+      </div>
+      <div class="form-group my-3">
+      <label>Área</label>
+      <select class="form-select" name="area">
+        <option selected>Área del empleado</option>
+        {% for area in data.Areas %}
+        <option value="{{ area.idArea }}">{{area.NombreArea}}</option>
+        {% endfor %}
+      </select>
+      </div>
+
+      <div class="form-group my-3">
+      <label>Cargo</label>
+      <select class="form-select my-3" name="cargo">
+        <option selected>Cargo del empleado</option>
+        {% for area in data.Cargos %}
+        <option value="{{area.idCargo}}">{{area.NombreCargo}}</option>
+        {% endfor %}
+      </select>
+      </div>
+
+      <div class="form-group my-3">
+        <label>Fecha de ingreso</label>
+        <input name="fingreso" type="date" class="form-control" placeholder="Fecha de ingreso">
+      </div>
+      <div class="form-group my-3">
+        <label>Fecha de retiro</label>
+        <input name="fretiro" type="date" class="form-control" placeholder="Fecha de retiro">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <a href="{{url_for('index')}}">
+        <button type="button" class="btn btn-danger">Regresar</button>
+      </a>
+    </form>
+
+</div>
+
+{% endblock %}

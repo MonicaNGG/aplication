@@ -1,0 +1,65 @@
+{% extends 'base.html'%}
+
+{% block title %} 
+Editar empleado
+{% endblock %}
+
+{% block body %}
+
+<div class="container mt-5">
+    <h1>Agregar empleado</h1>
+
+    <form method="post">
+      <div class="form-group my-3">
+        <label>Nombre</label>
+        <input value="{{data.empleado.Nombre}}" name="nombre" type="text" class="form-control" placeholder="Nombre de empleado">
+      </div>
+      <div class="form-group my-3">
+        <label>Documento</label>
+        <input value="{{data.empleado.Documento}}"  name="documento" type="text" class="form-control" placeholder="Número de documento">
+      </div>
+      <div class="form-group my-3">
+        <label>Cuenta bancaria</label>
+        <input value="{{data.empleado.cuenta}}"  name="cuenta" type="text" class="form-control" placeholder="Número de cuenta bancaria">
+      </div>
+
+      <div class="form-group my-3">
+      <label>Área</label>
+      <select class="form-select" name="area">
+        <option selected>Área del empleado</option>
+        {% for area in data.Areas %}
+        <option value="{{area.idArea}}" {% if area.idArea == data.empleado.area %} selected {% endif %}>{{area.NombreArea}}</option>
+        {% endfor %}
+      </select>
+      </div>
+
+      <div class="form-group my-3">
+      <label>Cargo</label>
+      <select class="form-select my-3" name="cargo">
+        {% for cargo in data.Cargos %}
+        <option value="{{cargo.idCargo}}" {% if cargo.idCargo == data.empleado.cargo %} selected {% endif %}>{{cargo.NombreCargo}}</option>
+        {% endfor %}
+      </select>
+      </div>
+
+      <div class="form-group my-3">
+        <label>Fecha de ingreso</label>
+        <input value="{{data.empleado.fingreso}}"  name="fingreso" type="date" class="form-control" placeholder="Fecha de ingreso">
+      </div>
+      <div class="form-group my-3">
+        <label>Fecha de retiro</label>
+        <input value="{{data.empleado.fretiro}}"  name="fretiro" type="date" class="form-control" placeholder="Fecha de retiro">
+      </div>
+
+      <button type="submit" class="btn btn-primary">Guardar</button>
+      <a href="{{url_for('index')}}">
+        <button type="button" class="btn btn-danger">Regresar</button>
+      </a>
+    </form>
+
+</div>
+
+
+
+
+{% endblock %}

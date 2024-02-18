@@ -1,0 +1,108 @@
+{% extends 'base.html'%}
+
+{% block title %} 
+Editar salario
+{% endblock %}
+
+{% block body %}
+
+<div class="container mt-5">
+    <h1>Recibo de pago de {{data.empleado.Nombre}}</h1>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" colspan="3">Datos generales</th>
+                </tr>           
+            </thead>
+            <tbody>
+              <tr>
+                <th></th>
+                <th>Número de documento</th>
+                <td>{{data.empleado.Documento}}</td>
+              </tr>
+              <tr>
+                <th></th>
+                <th>Area</th>
+                <td>{{data.empleado.area}}</td>
+              </tr>
+              <tr>
+                <th></th>
+                <th>Cargo</th>
+                <td>{{data.empleado.cargo}}</td>
+              </tr>
+              <tr>
+                <th></th>
+                <th>Fecha de ingreso</th>
+                <td>{{data.empleado.fingreso}}</td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" colspan="3">Devengados</th>
+                </tr>           
+                <tr>
+                    <th scope="col">Cod</th>
+                    <th scope="col">Concepto</th>
+                    <th scope="col">Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for devengado in data.devengados %}
+              <tr>
+                <td>{{ devengado.codigo }} </td>
+                <td>{{ devengado.Nombre }}</td>
+                <td>{{ devengado.Valor }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" colspan="3">Descuentos</th>
+                </tr>           
+                <tr>
+                    <th scope="col">Cod</th>
+                    <th scope="col">Concepto</th>
+                    <th scope="col">Valor</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for descuento in data.descuentos %}
+              <tr>
+                <td>{{ descuento.codigo }} </td>
+                <td>{{ descuento.Nombre }}</td>
+                <td>{{ descuento.Valor }}</td>
+              </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" colspan="5"></th>
+                    <th scope="col" colspan="3">Total</th>
+                    <th>{{data.total}}</th>
+                </tr>           
+            </thead>
+        </table>
+    </div>
+</div>
+
+
+    </div>
+
+
+{% endblock %}

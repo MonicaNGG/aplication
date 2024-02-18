@@ -1,0 +1,85 @@
+{% extends 'base.html'%}
+
+{% block title %} 
+Editar salario
+{% endblock %}
+
+{% block body %}
+
+<div class="container mt-5">
+    <h1>Salario de {{data.empleado.Nombre}}</h1>
+
+
+<form method="post">
+    <h2>Devengados</h2>
+
+{% for devengado in data.devengados %}
+    <div class="card my-2">
+        <input name="{{devengado.codigo}}" value="{{devengado.id}}" hidden>
+        <div class="card-header">
+            {{ devengado.codigo}} - {{ devengado.Nombre}}
+        </div>
+        <div class="card-body">
+
+            <div class="form-group my-2">
+                <label>Valor</label>
+                <input value="{{devengado.Valor}}" name="{{devengado.codigo}}"  type="text" class="form-control" placeholder="Ingrese el valor">
+            </div>
+
+            <div class="form-group my-2">
+                <label>Observación</label>
+                <input value="{{devengado.Observacion}}" name="{{devengado.codigo}}" type="text" class="form-control" placeholder="Escriba una observación si lo considera ...">
+            </div>
+
+            <div class="form-check">
+                <input name="{{devengado.codigo}}" type="checkbox" class="form-check-input" {% if devengado.aplica == 1 %} checked {% endif %}>
+                <label class="form-check-label">Seleccionar si aplica</label>
+              </div>
+        </div>
+    </div>
+{% endfor %}
+
+
+    <h2>Descuentos</h2>
+
+
+    {% for descuento in data.descuentos %}
+    <div class="card my-2">
+        <div class="card-header">
+            {{ descuento.codigo}} - {{ descuento.Nombre}}
+        </div>
+        <div class="card-body">
+            <input name="{{descuento.codigo}}" value="{{descuento.id}}" hidden>
+            <div class="form-group my-2">
+                <label>Valor</label>
+                <input value="{{descuento.Valor}}" name="{{descuento.codigo}}" type="text" class="form-control" placeholder="Ingrese el valor">
+            </div>
+
+            <div class="form-group my-2">
+                <label>Observación</label>
+                <input value="{{descuento.Observacion}}" name="{{descuento.codigo}}" type="text" class="form-control" placeholder="Escriba una observación si lo considera ...">
+            </div>
+
+            <div  class="form-check">
+                <input name="{{descuento.codigo}}" type="checkbox" class="form-check-input" {% if descuento.aplica == 1 %} checked {% endif %}>
+                <label class="form-check-label">Seleccionar si aplica</label>
+              </div>
+        </div>
+    </div>
+{% endfor %}
+
+    <div class="my-3">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+
+        <a href="{{url_for('recibo',idEmpleado = data.empleado.idEmpleado)}}" target="_blank" rel="noopener noreferrer">
+            <button type="button" class="btn btn-warning">Generar recibo</button>
+        </a>
+
+        <a href="{{url_for('index')}}">
+            <button type="button" class="btn btn-danger">Regresar</button>
+        </a>
+    </div>
+    </div>
+</form>
+
+{% endblock %}
